@@ -4,6 +4,7 @@ import Image from 'next/image'
 import NoticeList from './NoticeList'
 import { NoticeProps } from '@/types'
 import { useRouter } from 'next/navigation'
+import CustomButton from '../CustomButton'
 
 const Notice = () => {
     const [loading, setLoading] = useState(true);
@@ -49,7 +50,7 @@ const Notice = () => {
             <div className='notice__container'>
                 <div className='notice__left'>
                     <h1 className='notice__title'>공지사항</h1>
-                    <button className='notice__button' onClick={() => { router.push('/write') }}>작성하기</button>
+                    <CustomButton title="작성하기" containerStyles={"border"} handleClick={() => { router.push('/write') }} />
                 </div>
                 <div className='notice__right'>
                     <input type="text" placeholder='검색어' className='notice__input' value={search} onChange={(e) => setSearch(e.target.value)} />

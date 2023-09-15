@@ -12,6 +12,10 @@
   @apply max-w-[800px] mx-auto pt-[60px];
 }
 
+.custom-btn {
+  @apply rounded-[6px] px-[12px] py-[8px];
+}
+
 /* Navbar */
 .navbar {
   @apply h-[56px] bg-[#001E4C] px-[20px] flex items-center justify-between text-[18px];
@@ -52,4 +56,17 @@
 
 .notice__searchBtn {
   @apply w-[40px] h-full flex justify-center items-center absolute right-0;
+}
+
+/* notice Detail */
+.notice-detail__title {
+  @apply text-[32px] font-semibold pt-[24px];
+}
+
+.notice-detail__date {
+  @apply text-[#707070] pb-[32px] pt-[16px];
+}
+
+.notice-detail__button {
+  @apply pt-[16px] flex gap-4;
 }

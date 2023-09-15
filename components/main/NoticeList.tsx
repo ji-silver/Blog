@@ -2,6 +2,7 @@
 import { formatTime } from '@/utils';
 import PageNation from './PageNation';
 import { NoticeProps } from '@/types'
+import Link from 'next/link'
 
 interface NoticeListProps {
     data: NoticeProps[];
@@ -9,9 +10,6 @@ interface NoticeListProps {
 }
 
 const NoticeList = ({ data, loading }: NoticeListProps) => {
-    const handleClick = () => {
-
-    }
     return (
         <div>
             {loading ? (
@@ -27,12 +25,14 @@ const NoticeList = ({ data, loading }: NoticeListProps) => {
                         </div>
                     ) : (
                         data.map((item) => (
-                            <div className='px-6 py-4 cursor-pointer hover:bg-[#EFF0f3]' key={item.id} onClick={handleClick}>
-                                <p className='text-[#222222]'>
-                                    {item.title}
-                                </p>
-                                <p className='text-[#707070] text-[14px]'>{formatTime(item.createdAt)}</p>
-                            </div>
+                            <Link href={`/detail/${item.id}`} key={item.id}>
+                                <div className='px-6 py-4 hover:bg-[#EFF0f3]'>
+                                    <p className='text-[#222222]'>
+                                        {item.title}
+                                    </p>
+                                    <p className='text-[#707070] text-[14px]'>{formatTime(item.createdAt)}</p>
+                                </div>
+                            </Link>
                         ))
                     )}
                 </ul>
