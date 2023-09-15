@@ -24,3 +24,32 @@
   @apply w-1 h-1 bg-[#EC5F50] rounded inline-block absolute right-1;
   content: "";
 }
+
+/* notice */
+.notice__container {
+  @apply flex items-center justify-between pb-[20px];
+}
+
+.notice__left {
+  @apply flex items-center;
+}
+
+.notice__title {
+  @apply text-[32px] font-semibold flex pr-3;
+}
+
+.notice__button {
+  @apply h-[40px] border border-[#DEDEDE] px-[12px] rounded-[6px];
+}
+
+.notice__right {
+  @apply relative flex w-[280px] h-[40px];
+}
+
+.notice__input {
+  @apply border border-[#222222] rounded-[6px] w-full h-full px-3;
+}
+
+.notice__searchBtn {
+  @apply w-[40px] h-full flex justify-center items-center absolute right-0;
+}
