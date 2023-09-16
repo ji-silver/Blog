@@ -16,6 +16,14 @@
   @apply rounded-[6px] px-[12px] py-[8px];
 }
 
+.notice__subtitle {
+  @apply text-[#222222] font-semibold pb-[24px];
+}
+
+.editor-input {
+  @apply h-full;
+}
+
 /* Navbar */
 .navbar {
   @apply h-[56px] bg-[#001E4C] px-[20px] flex items-center justify-between text-[18px];
@@ -60,7 +68,7 @@
 
 /* notice Detail */
 .notice-detail__title {
-  @apply text-[32px] font-semibold pt-[24px];
+  @apply text-[32px] font-semibold;
 }
 
 .notice-detail__date {

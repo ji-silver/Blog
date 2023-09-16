@@ -35,3 +35,15 @@ export const GET = async () => {
     );
   }
 };
+
+export const DELETE = async (req: Request) => {
+  try {
+    await prisma.post.deleteMany();
+    return NextResponse.json({ message: "모든 데이터 삭제 완료" });
+  } catch (err) {
+    return NextResponse.json(
+      { message: "데이터를 삭제하지 못했습니다.", err },
+      { status: 500 }
+    );
+  }
+};

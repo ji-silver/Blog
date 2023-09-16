@@ -9,30 +9,28 @@ export const formatTime = (isoDateString: string) => {
   // 시간 차이 계산
   const timeDifference = now.getTime() - date.getTime();
 
-  //  60000밀리초(1분)전이면 방금 전으로 표기
+  // 1초 단위로 표시
   if (timeDifference < 60000) {
     return "방금 전";
-  } else if (
-    timeDifference >= 60000 &&
-    timeDifference < 3600000 &&
-    date.getDate() === now.getDate() && // 날짜가 동일한 경우
-    date.getMonth() === now.getMonth() && // 월이 동일한 경우
-    date.getFullYear() === now.getFullYear() // 년도가 동일한 경우
-  ) {
-    return `${Math.floor(timeDifference / 60000)}분 전`;
-  } else if (
-    timeDifference >= 3600000 &&
-    date.getDate() === now.getDate() &&
-    date.getMonth() === now.getMonth() &&
-    date.getFullYear() === now.getFullYear()
-  ) {
-    return `${Math.floor(timeDifference / 3600000)}시간 전`;
-  } else {
-    const formattedDate = `${date.getFullYear()}. ${String(
-      date.getMonth() + 1
-    ).padStart(2, "0")}. ${String(date.getDate()).padStart(2, "0")}`;
-    return formattedDate;
   }
+
+  // 1분 단위로 표시
+  if (timeDifference < 3600000) {
+    const minutesAgo = Math.floor(timeDifference / 60000);
+    return `${minutesAgo}분 전`;
+  }
+
+  // 1시간 단위로 표시
+  if (timeDifference < 86400000) {
+    const hoursAgo = Math.floor(timeDifference / 3600000);
+    return `${hoursAgo}시간 전`;
+  }
+
+  // yyyy.mm.dd 형식으로 표시
+  const formattedDate = `${date.getFullYear()}. ${String(
+    date.getMonth() + 1
+  ).padStart(2, "0")}. ${String(date.getDate()).padStart(2, "0")}`;
+  return formattedDate;
 };
 
 // 날짜만 출력하기

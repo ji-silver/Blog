@@ -34,7 +34,7 @@ const NoticeDetail = ({ postData }: Props) => {
     }
     return (
         <div className='max-width'>
-            <span className='text-[#222222] font-semibold'>공지사항</span>
+            <p className='notice__subtitle'>공지사항</p>
             <h1 className='notice-detail__title'>{postData?.title}</h1>
             <p className='notice-detail__date'>{formattedDate}</p>
             <hr />
