@@ -19,7 +19,7 @@ const PageNation = ({ currentPage, onPageChange, totalPages }: PageNationProps) 
     };
 
     const handlePrevPage = () => {
-        const newPage = Math.max(currentPage - 1, 1); // 수정된 부분
+        const newPage = Math.max(currentPage - 1, 1);
         onPageChange(newPage);
     };
 

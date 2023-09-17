@@ -4,6 +4,7 @@ import CustomButton from './CustomButton';
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { formatDate } from '@/utils';
+import DOMPurify from "isomorphic-dompurify"
 
 interface Props {
     postData: NoticeProps | null;
@@ -38,7 +39,7 @@ const NoticeDetail = ({ postData }: Props) => {
             <h1 className='notice-detail__title'>{postData?.title}</h1>
             <p className='notice-detail__date'>{formattedDate}</p>
             <hr />
-            <p className='py-[32px]'>{postData?.desc}</p>
+            <div className='py-[32px]' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(postData?.desc || '') }} />
             <hr />
             <div className='notice-detail__button'>
                 <Link href='/'>

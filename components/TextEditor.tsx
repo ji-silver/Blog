@@ -1,7 +1,17 @@
 'use client'
+import dynamic from 'next/dynamic';
 import React, { useState } from 'react';
-import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+
+const QuillNoSSRWrapper = dynamic(() => import('react-quill'), {
+    ssr: false,
+    loading: () => <p>Loading ...</p>,
+});
+
+interface NoticeWriteProps {
+    onTextChange: (text: string) => void;
+    value: string;
+}
 
 const modules = {
     toolbar: [
@@ -14,12 +24,18 @@ const modules = {
     ],
 }
 
-const TextEditor = () => {
-    const [value, setValue] = useState('');
+const TextEditor = ({ onTextChange, value }: NoticeWriteProps) => {
+    const [editorValue, setEditorValue] = useState(value);
+
+    const handleChange = (newValue: string) => {
+        setEditorValue(newValue);
+        onTextChange(newValue);
+    };
+
     return (
-        <div>
-            <ReactQuill theme="snow" value={value} onChange={setValue} modules={modules} className='editor-input' />
-        </div>
+        <div className='h-[500px]'>
+            <QuillNoSSRWrapper theme="snow" value={editorValue} onChange={handleChange} modules={modules} style={{ height: "430px" }} />
+        </div >
     )
 }
 
