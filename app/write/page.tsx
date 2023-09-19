@@ -4,6 +4,7 @@ import NoticeWrite from '@/components/NoticeWrite'
 import TextEditor from '@/components/TextEditor'
 import React, { useState, FormEvent } from 'react'
 import { useRouter } from 'next/navigation';
+import { formatTodayDate } from '@/utils'
 
 interface FormData {
     title: string;
@@ -17,12 +18,9 @@ const WritePage = () => {
         desc: '',
     })
 
-    // 오늘날짜 가져오기
+    // 오늘날짜 포맷팅해서 가져오기
     const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const day = String(today.getDate()).padStart(2, '0');
-    const formattedDate = `${year}.${month}.${day}`;
+    const formattedDate = formatTodayDate(today);
 
     // 제목 업데이트
     const handleTitleChange = (text: string) => {

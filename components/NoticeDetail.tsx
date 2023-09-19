@@ -45,7 +45,7 @@ const NoticeDetail = ({ postData }: Props) => {
                 <Link href='/'>
                     <CustomButton title="목록으로" containerStyles={"border "} />
                 </Link>
-                <CustomButton title="수정" containerStyles={"bg-[#FF5C00]"} textStyles={"text-white"} />
+                <CustomButton title="수정" containerStyles={"bg-[#FF5C00]"} textStyles={"text-white"} handleClick={() => router.push(`/edit/${id}`)} />
                 <CustomButton title="삭제" containerStyles={"bg-[#FF0000]"} textStyles={"text-white"} handleClick={handleDelete} />
             </div>
         </div>

@@ -1,17 +1,24 @@
 'use client'
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, useEffect } from 'react';
 
 interface NoticeWriteProps {
+    initialValue?: string
     onTextChange: (text: string) => void;
 }
 
-const NoticeWrite = ({ onTextChange }: NoticeWriteProps) => {
-    const [value, setValue] = useState('');
+const NoticeWrite = ({ onTextChange, initialValue }: NoticeWriteProps) => {
+    const [value, setValue] = useState(initialValue || '');
+
+    useEffect(() => {
+        setValue(initialValue || '');
+    }, [initialValue]);
 
     const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const newText = e.target.value;
         setValue(newText);
-        onTextChange(newText);
+        if (onTextChange) {
+            onTextChange(newText);
+        }
     };
 
     return (

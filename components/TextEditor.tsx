@@ -1,6 +1,6 @@
 'use client'
 import dynamic from 'next/dynamic';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
 
 const QuillNoSSRWrapper = dynamic(() => import('react-quill'), {
@@ -27,9 +27,15 @@ const modules = {
 const TextEditor = ({ onTextChange, value }: NoticeWriteProps) => {
     const [editorValue, setEditorValue] = useState(value);
 
+    useEffect(() => {
+        setEditorValue(value);
+    }, [value]);
+
     const handleChange = (newValue: string) => {
         setEditorValue(newValue);
-        onTextChange(newValue);
+        if (onTextChange) {
+            onTextChange(newValue);
+        }
     };
 
     return (
