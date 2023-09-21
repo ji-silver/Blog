@@ -1,31 +1,86 @@
 'use client'
-import dynamic from 'next/dynamic';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState, useRef, forwardRef } from 'react';
 import 'react-quill/dist/quill.snow.css';
-
-const QuillNoSSRWrapper = dynamic(() => import('react-quill'), {
-    ssr: false,
-    loading: () => <p>Loading ...</p>,
-});
+import AWS from 'aws-sdk';
+import ReactQuill from 'react-quill';
 
 interface NoticeWriteProps {
     onTextChange: (text: string) => void;
     value: string;
 }
 
-const modules = {
-    toolbar: [
-        [{ 'header': [1, 2, false] }],
-        ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-        [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
-        ['link', 'image'],
-        [{ 'align': [] }, { 'color': [] }, { 'background': [] }],
-        ['clean']
-    ],
-}
+AWS.config.update({
+    region: process.env.NEXT_PUBLIC_S3_REGION,
+    accessKeyId: process.env.NEXT_PUBLIC_S3_ACCESS_ID,
+    secretAccessKey: process.env.NEXT_PUBLIC_S3_ACCESS_KEY,
+});
 
-const TextEditor = ({ onTextChange, value }: NoticeWriteProps) => {
+const cloudFront_url = process.env.NEXT_PUBLIC_CLOUD_FRONT_URL;
+
+const TextEditor = (({ onTextChange, value }: NoticeWriteProps) => {
+    const quillRef = useRef<ReactQuill>(null);
+
     const [editorValue, setEditorValue] = useState(value);
+    console.log(editorValue)
+
+    // 이미지 S3 업로드 후 URL 가져오기
+    const imageHandler = async () => {
+        const input = document.createElement("input");
+        input.setAttribute("type", "file");
+        input.setAttribute("accept", "image/*");
+        input.click();
+
+        input.addEventListener("change", async () => {
+            const file = input.files?.[0];
+            const fileName = file?.name;
+            try {
+                if (quillRef.current) {
+                    const upload = new AWS.S3.ManagedUpload({
+                        params: {
+                            ACL: "public-read",
+                            Bucket: "jisilver-bucket",
+                            Key: `upload/${fileName}`,
+                            Body: file,
+                        },
+                    })
+                    const url_key = await upload.promise().then((res) => res.Key);
+
+                    const range = quillRef.current?.getEditor().getSelection()?.index;
+                    if (range !== null && range !== undefined) {
+                        let quill = quillRef.current?.getEditor();
+                        quill?.setSelection(range, 1);
+                        quill?.clipboard.dangerouslyPasteHTML(
+                            range,
+                            `<img src="${cloudFront_url}/${url_key}" alt="image" />`
+
+                        );
+                    }
+                }
+            } catch (err) {
+                console.log(err)
+            }
+        })
+    }
+
+    // 에디터 모듈
+    const modules = useMemo(
+        () => ({
+            toolbar: {
+                container: [
+                    [{ header: [1, 2, false] }],
+                    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                    [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
+                    ['link', 'image'],
+                    [{ align: [] }],
+                    ['clean'],
+                ],
+                handlers: {
+                    image: imageHandler,
+                },
+            },
+        }),
+        []
+    );
 
     useEffect(() => {
         setEditorValue(value);
@@ -40,9 +95,9 @@ const TextEditor = ({ onTextChange, value }: NoticeWriteProps) => {
 
     return (
         <div className='h-[500px]'>
-            <QuillNoSSRWrapper theme="snow" value={editorValue} onChange={handleChange} modules={modules} style={{ height: "430px" }} />
+            <ReactQuill ref={quillRef} theme="snow" value={editorValue} onChange={handleChange} modules={modules} style={{ height: "430px" }} />
         </div >
     )
-}
+})
 
 export default TextEditor
