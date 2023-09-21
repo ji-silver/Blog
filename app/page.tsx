@@ -1,4 +1,4 @@
-import Notice from '@/components/main/Notice'
+import Notice from '@/components/notice/Notice'
 
 export default function Home() {
   return (

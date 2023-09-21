@@ -1,0 +1,42 @@
+.navbar {
+    height: 56px;
+    background: #001e4c;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+
+    ul {
+        display: flex;
+        cursor: pointer;
+        color: white;
+        gap: 0.5rem;
+
+        li {
+            padding: 0 12px;
+        }
+    }
+}
+
+.navbarLeft {
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 77px;
+}
+
+.navbarPoint {
+    position: relative;
+
+    &::before {
+        width: 4px;
+        height: 4px;
+        background: #ec5f50;
+        border-radius: 4px;
+        display: inline-block;
+        position: absolute;
+        right: 4px;
+        content: "";
+    }
+}

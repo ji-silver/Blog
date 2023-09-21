@@ -1,17 +1,19 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
-import NoticeList from './NoticeList'
+import NoticeList from '../noticeList/NoticeList'
 import { NoticeProps } from '@/types'
 import { useRouter } from 'next/navigation'
-import CustomButton from '../CustomButton'
+import CustomButton from '../customButton/CustomButton'
+import styles from './notice.module.scss';
 
 const Notice = () => {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState<NoticeProps[]>([])
-    const [search, setSearch] = useState('')
     const [filterData, setFilterData] = useState<NoticeProps[]>([])
+    const [search, setSearch] = useState('')
     const router = useRouter();
+    const apiUrl: string = process.env.NEXT_PUBLIC_API_URL || '';
 
     // 검색어 필터링
     const handleSearch = () => {
@@ -25,7 +27,7 @@ const Notice = () => {
     useEffect(() => {
         const getData = async () => {
             try {
-                const res = await fetch("http://localhost:3000/api/posts")
+                const res = await fetch(apiUrl)
 
                 if (!res.ok) {
                     throw new Error("데이터를 불러오는 중 오류가 발생했습니다.");
@@ -47,14 +49,14 @@ const Notice = () => {
 
     return (
         <div className='max-width'>
-            <div className='notice__container'>
-                <div className='notice__left'>
-                    <h1 className='notice__title'>공지사항</h1>
-                    <CustomButton title="작성하기" containerStyles={"border"} handleClick={() => { router.push('/write') }} />
+            <div className={styles.notice}>
+                <div className={styles.noticeLeft}>
+                    <h1>공지사항</h1>
+                    <CustomButton title="작성하기" Styles={styles.writeBtn} handleClick={() => { router.push('/write') }} />
                 </div>
-                <div className='notice__right'>
-                    <input type="text" placeholder='검색어' className='notice__input' value={search} onChange={(e) => setSearch(e.target.value)} />
-                    <button className='notice__searchBtn' onClick={handleSearch}>
+                <div className={styles.noticeRight}>
+                    <input type="text" placeholder='검색어' value={search} onChange={(e) => setSearch(e.target.value)} />
+                    <button onClick={handleSearch}>
                         <Image src='/search.svg' alt="search button" width={24} height={24} />
                     </button>
                 </div>

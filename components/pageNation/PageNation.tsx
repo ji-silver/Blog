@@ -1,11 +1,7 @@
 import React from 'react';
 import Image from 'next/image'
-
-interface PageNationProps {
-    currentPage: number;
-    onPageChange: (newPage: number) => void;
-    totalPages: number;
-}
+import { PageNationProps } from '@/types';
+import styles from './pageNation.module.scss'
 
 const PageNation = ({ currentPage, onPageChange, totalPages }: PageNationProps) => {
     const handlePrevGroup = () => {
@@ -37,7 +33,7 @@ const PageNation = ({ currentPage, onPageChange, totalPages }: PageNationProps) 
     const endPage = Math.min(currentGroup * numPagesInGroup, totalPages);
 
     return (
-        <div className="flex justify-center mt-4 mb-[64px] gap-4">
+        <div className={styles.pageNation}>
             <button
                 onClick={handlePrevGroup}
                 disabled={currentGroup === 1}
@@ -50,11 +46,11 @@ const PageNation = ({ currentPage, onPageChange, totalPages }: PageNationProps) 
             >
                 <Image src="/caretLeft.svg" alt="arrow button" width={20} height={20} />
             </button>
-            <div className='flex gap-5'>
+            <div className={styles.number}>
                 {totalPages === 0 ? (
                     <button
                         onClick={() => onPageChange(1)} // 항상 1 페이지로 이동
-                        className="font-bold"
+                        className={styles.fontBold}
                     >
                         1
                     </button>
@@ -63,7 +59,7 @@ const PageNation = ({ currentPage, onPageChange, totalPages }: PageNationProps) 
                         <button
                             key={page}
                             onClick={() => onPageChange(page)}
-                            className={`${page === currentPage ? "font-bold" : ""}`}
+                            className={`${page === currentPage ? styles.fontBold : ""}`}
                         >
                             {page}
                         </button>

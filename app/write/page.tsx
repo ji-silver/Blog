@@ -1,19 +1,16 @@
 'use client'
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import FormPage from '@/components/FormPage';
-
-interface PostFormData {
-    title: string;
-    desc: string;
-}
+import FormPage from '@/components/formPage/FormPage';
+import { PostFormData } from '@/types';
 
 const WritePage = () => {
     const router = useRouter();
+    const apiUrl: string = process.env.NEXT_PUBLIC_API_URL || '';
 
     const handleWriteSubmit = async (formData: PostFormData) => {
         try {
-            const res = await fetch(`http://localhost:3000/api/posts/`, {
+            const res = await fetch(apiUrl, {
                 method: 'POST',
                 body: JSON.stringify(formData),
                 headers: {

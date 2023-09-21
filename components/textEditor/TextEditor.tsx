@@ -1,13 +1,10 @@
 'use client'
-import React, { useEffect, useMemo, useState, useRef, forwardRef } from 'react';
-import 'react-quill/dist/quill.snow.css';
+import React, { useEffect, useMemo, useState, useRef } from 'react';
 import AWS from 'aws-sdk';
 import ReactQuill from 'react-quill';
-
-interface NoticeWriteProps {
-    onTextChange: (text: string) => void;
-    value: string;
-}
+import { NoticeWriteProps } from '@/types';
+import 'react-quill/dist/quill.snow.css';
+import styles from './textEditor.module.scss'
 
 AWS.config.update({
     region: process.env.NEXT_PUBLIC_S3_REGION,
@@ -21,7 +18,6 @@ const TextEditor = (({ onTextChange, value }: NoticeWriteProps) => {
     const quillRef = useRef<ReactQuill>(null);
 
     const [editorValue, setEditorValue] = useState(value);
-    console.log(editorValue)
 
     // 이미지 S3 업로드 후 URL 가져오기
     const imageHandler = async () => {
@@ -94,7 +90,7 @@ const TextEditor = (({ onTextChange, value }: NoticeWriteProps) => {
     };
 
     return (
-        <div className='h-[500px]'>
+        <div className={styles.container}>
             <ReactQuill ref={quillRef} theme="snow" value={editorValue} onChange={handleChange} modules={modules} style={{ height: "430px" }} />
         </div >
     )

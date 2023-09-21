@@ -1,0 +1,40 @@
+.loading {
+    text-align: center;
+    padding: 70px 0;
+    opacity: 0.8;
+
+    span {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #ff5c00;
+        position: relative;
+        animation: fade 1s infinite;
+    }
+
+    .dot1 {
+        left: 0;
+        animation-delay: 1s;
+    }
+    .dot2 {
+        left: 12px;
+        animation-delay: 0.2s;
+    }
+    .dot3 {
+        left: 24px;
+        animation-delay: 0.1s;
+    }
+}
+
+@keyframes fade {
+    0% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

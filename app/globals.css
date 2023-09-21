@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 
 * {
   margin: 0;
@@ -8,69 +6,43 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: "Pretendard Variable";
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style-type: none;
+}
+
+hr {
+  border: 0.5px solid #dedede;
+}
+
 .max-width {
-  @apply max-w-[800px] mx-auto pt-[60px];
+  max-width: 800px;
+  margin: 0 auto;
+  padding-top: 60px;
+  padding-bottom: 64px;
 }
 
 .custom-btn {
-  @apply rounded-[6px] px-[12px] py-[8px];
+  border-radius: 6px;
+  padding: 10px 12px;
 }
 
-.notice__subtitle {
-  @apply text-[#222222] font-semibold pb-[24px];
-}
-
-/* Navbar */
-.navbar {
-  @apply h-[56px] bg-[#001E4C] px-[20px] flex items-center justify-between text-[18px];
-}
-.navbar__point {
-  @apply relative;
-}
-
-.navbar__point::before {
-  @apply w-1 h-1 bg-[#EC5F50] rounded inline-block absolute right-1;
-  content: "";
-}
-
-/* notice */
-.notice__container {
-  @apply flex items-center justify-between pb-[20px];
-}
-
-.notice__left {
-  @apply flex items-center;
-}
-
-.notice__title {
-  @apply text-[32px] font-semibold flex pr-3;
-}
-
-.notice__button {
-  @apply h-[40px] border border-[#DEDEDE] px-[12px] rounded-[6px];
-}
-
-.notice__right {
-  @apply relative flex w-[280px] h-[40px];
-}
-
-.notice__input {
-  @apply border border-[#222222] rounded-[6px] w-full h-full px-3;
-}
-
-.notice__searchBtn {
-  @apply w-[40px] h-full flex justify-center items-center absolute right-0;
-}
-
-/* notice Detail */
-.notice-detail__title {
-  @apply text-[32px] font-semibold;
-}
-
-.notice-detail__date {
-  @apply text-[#707070] pb-[32px] pt-[16px];
-}
-
-.notice-detail__button {
-  @apply pt-[16px] flex gap-4;
+.noticeSubtitle {
+  color: #222222;
+  font-weight: 600;
+  padding-bottom: 24px;
 }

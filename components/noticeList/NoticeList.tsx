@@ -2,8 +2,10 @@
 import { formatTime } from '@/utils';
 import { NoticeProps } from '@/types'
 import { useState } from 'react';
-import PageNation from './PageNation';
+import PageNation from '../pageNation/PageNation';
 import Link from 'next/link'
+import styles from './noticeList.module.scss'
+import Loading from '../loading/Loading';
 
 interface NoticeListProps {
     data: NoticeProps[];
@@ -36,33 +38,37 @@ const NoticeList = ({ data, loading }: NoticeListProps) => {
         <div>
             {loading ? (
                 <div>
-                    <p className='py-[74.5px] text-center'>로딩 중</p>
+                    <Loading />
+                    <hr />
                 </div>
             ) : (
                 <ul>
                     {currentPageData.length === 0 ? (
                         <div>
-                            <p className='py-[74.5px] text-center text-[#707070]'>공지사항이 없습니다.</p>
+                            <p className={styles.empty}>공지사항이 없습니다.</p>
                             <hr />
                         </div>
                     ) : (
                         currentPageData.map((item) => (
                             <Link href={`/detail/${item.id}`} key={item.id}>
-                                <div className='px-6 py-4 hover:bg-[#EFF0f3]'>
-                                    <p className='text-[#222222]'>
+                                <div className={styles.list}>
+                                    <p className={styles.title}>
                                         {item.title}
                                     </p>
-                                    <p className='text-[#707070] text-[14px] pt-[12px]'>{formatTime(item.createdAt)}</p>
+                                    <p className={styles.time}>{formatTime(item.createdAt)}</p>
                                 </div>
                             </Link>
                         ))
                     )}
+                    <hr />
                 </ul>
             )}
-            <hr />
-            <PageNation currentPage={currentPage} onPageChange={handlePage} totalPages={totalPages} />
+            {loading ? null : (
+                <PageNation currentPage={currentPage} onPageChange={handlePage} totalPages={totalPages} />
+            )}
         </div>
     )
+
 }
 
 export default NoticeList

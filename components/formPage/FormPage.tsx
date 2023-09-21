@@ -3,20 +3,18 @@ import dynamic from 'next/dynamic';
 import React, { FormEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { formatTodayDate } from '@/utils';
-import NoticeWrite from './NoticeWrite';
-import CustomButton from './CustomButton';
+import NoticeWrite from '../noticeWrite/NoticeWrite';
+import CustomButton from '../customButton/CustomButton';
+import { PostFormData } from '@/types';
+import styles from './formPage.module.scss'
 
-const Editor = dynamic(() => import('./TextEditor'), { ssr: false });
+// 에디터 동적으로 가져오기
+const Editor = dynamic(() => import('../textEditor/TextEditor'), { ssr: false });
 
 interface PostFormProps {
     onSubmit: (formData: PostFormData) => Promise<void>;
     initialFormData: PostFormData;
     titlePlaceholder: string;
-}
-
-interface PostFormData {
-    title: string;
-    desc: string;
 }
 
 const FormPage = ({
@@ -44,6 +42,10 @@ const FormPage = ({
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         try {
+            if (!formData.title || !formData.desc) {
+                alert('빈칸을 모두 입력해주세요.');
+                return;
+            }
             await onSubmit(formData);
         } catch (err) {
             console.log(err);
@@ -59,7 +61,7 @@ const FormPage = ({
                 value={initialFormData.title}
             />
 
-            <p className="text-[#707070] pt-[16px] pb-[32px]">
+            <p className={styles.date}>
                 {formatTodayDate(new Date())}
             </p>
 
@@ -68,16 +70,15 @@ const FormPage = ({
                 value={initialFormData.desc}
             />
 
-            <div className="pt-[16px] mb-[60px]">
+            <div className={styles.btnContainer}>
                 <CustomButton
                     title="취소"
-                    containerStyles="border border-[#DEDEDE] mr-[16px]"
+                    Styles={styles.cancelBtn}
                     handleClick={() => router.back()}
                 />
                 <CustomButton
                     title="저장"
-                    containerStyles="bg-[#FF5C00]"
-                    textStyles="text-white"
+                    Styles={styles.saveBtn}
                     handleClick={handleSubmit}
                 />
             </div>

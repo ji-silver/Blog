@@ -1,0 +1,39 @@
+.title {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.date {
+    color: #707070;
+    padding-top: 16px;
+    padding-bottom: 32px;
+}
+
+.content {
+    padding: 32px 0;
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.btnContainer {
+    padding-top: 16px;
+    display: flex;
+    gap: 1rem;
+}
+
+.listBtn {
+    background: white;
+    border: 1px solid #dedede;
+}
+
+.editBtn {
+    background: #ff5c00;
+    color: white;
+}
+
+.deleteBtn {
+    background: #ff0000;
+    color: white;
+}
