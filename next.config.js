@@ -5,6 +5,11 @@ const nextConfig = {
   // },
 };
 module.exports = {
+  externals: {
+    "utf-8-validate": "utf-8-validate",
+    bufferutil: "bufferutil",
+    canvas: "commonjs canvas",
+  },
   module: {
     rules: [
       {
