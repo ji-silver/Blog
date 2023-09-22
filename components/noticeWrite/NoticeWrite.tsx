@@ -11,7 +11,11 @@ const NoticeWrite = ({ onTextChange, value: propValue }: NoticeTitleProps) => {
     }, [propValue]);
 
     const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        const newText = e.target.value;
+        let newText = e.target.value;
+        // 띄어쓰기 포함하여 100자로 제한
+        if (newText.length > 100) {
+            newText = newText.slice(0, 100);
+        }
         setValue(newText);
         if (onTextChange) {
             onTextChange(newText);

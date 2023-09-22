@@ -16,7 +16,6 @@ const cloudFront_url = process.env.NEXT_PUBLIC_CLOUD_FRONT_URL;
 
 const TextEditor = (({ onTextChange, value }: NoticeWriteProps) => {
     const quillRef = useRef<ReactQuill>(null);
-
     const [editorValue, setEditorValue] = useState(value);
 
     // 이미지 S3 업로드 후 URL 가져오기

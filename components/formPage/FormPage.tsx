@@ -8,7 +8,7 @@ import CustomButton from '../customButton/CustomButton';
 import { PostFormData } from '@/types';
 import styles from './formPage.module.scss'
 
-// 에디터 동적으로 가져오기
+// 에디터 SSR 지원 x, 비동기적으로 가져오기
 const Editor = dynamic(() => import('../textEditor/TextEditor'), { ssr: false });
 
 interface PostFormProps {
