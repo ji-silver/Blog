@@ -22,7 +22,7 @@ const NoticeDetail = ({ postData }: Props) => {
     const handleDelete = async () => {
         if (id && window.confirm('정말 삭제하시겠습니까?')) {
             try {
-                const res = await fetch(`${apiUrl}/${id}`, {
+                const res = await fetch(`/api/posts/${id}`, {
                     method: "DELETE"
                 });
                 if (res.ok) {

@@ -20,7 +20,7 @@ const EditPage = ({ params }: ParamsProps) => {
     useEffect(() => {
         const getPostId = async () => {
             try {
-                const res = await fetch(`${apiUrl}/${postId}`);
+                const res = await fetch(`/api/posts/${postId}`);
                 if (!res.ok) {
                     throw new Error('데이터를 불러오는 중 오류가 발생했습니다.');
                 }
@@ -36,7 +36,7 @@ const EditPage = ({ params }: ParamsProps) => {
 
     const handleEditSubmit = async (formData: PostFormData) => {
         try {
-            const res = await fetch(`${apiUrl}/${postId}`, {
+            const res = await fetch(`/api/posts/${postId}`, {
                 method: 'PATCH',
                 body: JSON.stringify(formData),
                 headers: {

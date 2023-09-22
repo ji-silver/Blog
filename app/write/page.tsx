@@ -10,7 +10,7 @@ const WritePage = () => {
 
     const handleWriteSubmit = async (formData: PostFormData) => {
         try {
-            const res = await fetch(apiUrl, {
+            const res = await fetch('/api/posts/', {
                 method: 'POST',
                 body: JSON.stringify(formData),
                 headers: {
