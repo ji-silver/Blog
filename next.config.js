@@ -13,8 +13,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.node$/,
-        loader: "file-loader",
+        test: /canvas\.node$/,
+        use: "file-loader",
       },
     ],
   },
