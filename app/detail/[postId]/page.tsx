@@ -16,7 +16,7 @@ const FetchPage = ({ params }: paramsProps) => {
     useEffect(() => {
         const getPostId = async () => {
             try {
-                const res = await fetch(`/${postId}`);
+                const res = await fetch(`/api/posts/${postId}`);
 
                 if (!res.ok) {
                     throw new Error("데이터를 불러오는 중 오류가 발생했습니다.");
