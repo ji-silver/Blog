@@ -19,7 +19,7 @@ const WritePage = () => {
             });
             if (res.ok) {
                 const data = await res.json();
-                router.push(`/detail/${data.id}`);
+                router.push(`/api/posts/detail/${data.id}`);
             } else {
                 alert('저장하지 못했습니다. 잠시후에 다시 이용해주세요.');
             }

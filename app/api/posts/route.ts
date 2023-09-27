@@ -1,16 +1,23 @@
 // url: http://localhost:3000/api/posts
-import prisma from "@/app/libs/prismadb";
 import { NextResponse } from "next/server";
+import prisma from "@/utils/connect";
+import { getAuthSession } from "@/utils/auth";
 
 // POST
 export const POST = async (req: Request) => {
+  const session = await getAuthSession();
+
+  if (!session) {
+    return NextResponse.json(
+      { message: "회원 정보가 없습니다." },
+      { status: 401 }
+    );
+  }
+
   try {
-    const { title, desc } = await req.json();
+    const body = await req.json();
     const newPost = await prisma.post.create({
-      data: {
-        title,
-        desc,
-      },
+      data: { ...body, userEmail: session.user?.email },
     });
 
     return NextResponse.json(newPost);

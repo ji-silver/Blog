@@ -37,18 +37,19 @@ const NoticeDetail = ({ postData }: Props) => {
     }
     return (
         <div className='max-width'>
-            <p className='noticeSubtitle'>공지사항</p>
-            <h1 className={styles.title}>{postData?.title}</h1>
-            <p className={styles.date}>{formattedDate}</p>
-            <hr />
-            <div className={styles.content} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(postData?.desc || '') }} />
-            <hr />
-            <div className={styles.btnContainer}>
-                <Link href='/'>
-                    <CustomButton title="목록으로" Styles={styles.listBtn} />
-                </Link>
-                <CustomButton title="수정" Styles={styles.editBtn} handleClick={() => router.push(`/edit/${id}`)} />
-                <CustomButton title="삭제" Styles={styles.deleteBtn} handleClick={handleDelete} />
+            <div className={styles.detail}>
+                <h1 className={styles.title}>{postData?.title}</h1>
+                <p className={styles.date}>{formattedDate}</p>
+                <hr />
+                <div className={styles.content} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(postData?.desc || '') }} />
+                <hr />
+                <div className={styles.btnContainer}>
+                    <Link href='/'>
+                        <CustomButton title="목록으로" containerStyles={styles.listBtn} />
+                    </Link>
+                    <CustomButton title="수정" containerStyles={styles.editBtn} handleClick={() => router.push(`/edit/${id}`)} />
+                    <CustomButton title="삭제" containerStyles={styles.deleteBtn} handleClick={handleDelete} />
+                </div>
             </div>
         </div>
     );

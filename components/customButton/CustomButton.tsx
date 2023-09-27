@@ -1,11 +1,16 @@
 import React from 'react'
 import { CustomButtonProps } from '@/types'
-import styles from 'customButton.module.scss'
+import styles from './customButton.module.scss'
 
-const CustomButton = ({ title, Styles, handleClick }: CustomButtonProps) => {
+const CustomButton = ({ title, containerStyles, handleClick, icon, children, textStyles }: CustomButtonProps) => {
     return (
-        <button className={`custom-btn ${Styles}`} onClick={handleClick}>
-            <span>{title}</span>
+        <button className={`custom-btn ${containerStyles}`} onClick={handleClick}>
+            {icon && (
+                <div className={styles.button}>
+                    {children}
+                </div>
+            )}
+            <span className={`${textStyles}`}>{title}</span>
         </button>
     )
 }

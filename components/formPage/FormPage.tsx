@@ -55,32 +55,34 @@ const FormPage = ({
 
     return (
         <div className="max-width">
-            <NoticeWrite
-                onTextChange={handleTitleChange}
-                placeholder={titlePlaceholder}
-                value={initialFormData.title}
-            />
-
-            <p className={styles.date}>
-                {formatTodayDate(new Date())}
-            </p>
-
-            <Editor
-                onTextChange={handleDescChange}
-                value={initialFormData.desc}
-            />
-
-            <div className={styles.btnContainer}>
-                <CustomButton
-                    title="취소"
-                    Styles={styles.cancelBtn}
-                    handleClick={() => router.back()}
+            <div className={styles.form}>
+                <NoticeWrite
+                    onTextChange={handleTitleChange}
+                    placeholder={titlePlaceholder}
+                    value={initialFormData.title}
                 />
-                <CustomButton
-                    title="저장"
-                    Styles={styles.saveBtn}
-                    handleClick={handleSubmit}
+
+                <p className={styles.date}>
+                    {formatTodayDate(new Date())}
+                </p>
+
+                <Editor
+                    onTextChange={handleDescChange}
+                    value={initialFormData.desc}
                 />
+
+                <div className={styles.btnContainer}>
+                    <CustomButton
+                        title="취소"
+                        containerStyles={styles.cancelBtn}
+                        handleClick={() => router.back()}
+                    />
+                    <CustomButton
+                        title="저장"
+                        containerStyles={styles.saveBtn}
+                        handleClick={handleSubmit}
+                    />
+                </div>
             </div>
         </div>
     );

@@ -1,4 +1,4 @@
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, ReactNode } from "react";
 
 export interface PostFormData {
   title: string;
@@ -31,7 +31,10 @@ export interface NoticeWriteProps {
 export interface CustomButtonProps {
   title: string;
   handleClick?: MouseEventHandler<HTMLButtonElement>;
-  Styles?: string;
+  textStyles?: string;
+  containerStyles?: string;
+  icon?: boolean;
+  children?: ReactNode;
 }
 
 // 페이지네이션 타입

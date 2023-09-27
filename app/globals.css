@@ -30,19 +30,29 @@ hr {
 }
 
 .max-width {
-  max-width: 800px;
   margin: 0 auto;
-  padding-top: 60px;
-  padding-bottom: 64px;
+  padding: 0 20px;
 }
 
 .custom-btn {
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 10px 12px;
 }
 
-.noticeSubtitle {
-  color: #222222;
-  font-weight: 600;
-  padding-bottom: 24px;
+@media (min-width: 1024px) {
+  .max-width {
+    max-width: 1280px;
+  }
+}
+@media (min-width: 768px) {
+  .max-width {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 768px) {
+  .max-width {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 }

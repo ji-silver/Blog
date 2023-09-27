@@ -51,8 +51,8 @@ const Notice = () => {
         <div className='max-width'>
             <div className={styles.notice}>
                 <div className={styles.noticeLeft}>
-                    <h1>공지사항</h1>
-                    <CustomButton title="작성하기" Styles={styles.writeBtn} handleClick={() => { router.push('/write') }} />
+                    <h1>모든 글</h1>
+
                 </div>
                 <div className={styles.noticeRight}>
                     <input type="text" placeholder='검색어' value={search} onChange={(e) => setSearch(e.target.value)} />

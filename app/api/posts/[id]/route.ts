@@ -1,5 +1,5 @@
 // url: http://localhost:3000/api/posts/:id
-import prisma from "@/app/libs/prismadb";
+import prisma from "@/utils/connect";
 import { NextResponse } from "next/server";
 
 // 특정 post GET

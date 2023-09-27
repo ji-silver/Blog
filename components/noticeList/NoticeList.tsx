@@ -45,7 +45,7 @@ const NoticeList = ({ data, loading }: NoticeListProps) => {
                 <ul>
                     {currentPageData.length === 0 ? (
                         <div>
-                            <p className={styles.empty}>공지사항이 없습니다.</p>
+                            <p className={styles.empty}>작성된 글이 없습니다.</p>
                             <hr />
                         </div>
                     ) : (

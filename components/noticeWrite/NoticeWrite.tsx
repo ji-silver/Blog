@@ -24,7 +24,6 @@ const NoticeWrite = ({ onTextChange, value: propValue }: NoticeTitleProps) => {
 
     return (
         <div>
-            <p className='noticeSubtitle'>공지사항</p>
             <textarea
                 value={value}
                 onChange={handleChange}

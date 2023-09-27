@@ -5,6 +5,13 @@ const nextConfig = {
       canvas: false,
     },
   },
+  images: {
+    domains: [
+      "res.cloudinary.com",
+      "lh3.googleusercontent.com",
+      "k.kakaocdn.net",
+    ],
+  },
   externals: {
     "utf-8-validate": "utf-8-validate",
     bufferutil: "bufferutil",
