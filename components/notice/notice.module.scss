@@ -11,7 +11,7 @@
     align-items: center;
 
     h1 {
-        font-size: 32px;
+        font-size: 3.5vmin;
         font-weight: 600;
         display: flex;
         padding-right: 12px;
@@ -30,6 +30,10 @@
     display: flex;
     width: 280px;
     height: 40px;
+
+    @media (max-width: 800px) {
+        width: 220px;
+    }
 
     input {
         border: 1px solid #d1d5db;

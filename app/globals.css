@@ -1,4 +1,4 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 * {
   margin: 0;
@@ -7,7 +7,7 @@
 }
 
 body {
-  font-family: "Pretendard Variable";
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 button {
@@ -18,7 +18,7 @@ button {
 
 a {
   text-decoration: none;
-  color: inherit;
+  color: black;
 }
 
 ul {

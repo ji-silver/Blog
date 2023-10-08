@@ -41,7 +41,13 @@ export const GET = async () => {
     );
   }
   try {
-    const posts = await prisma.post.findMany();
+    const userEmail = session.user?.email;
+    const posts = await prisma.post.findMany({
+      where: {
+        userEmail: userEmail,
+      } as { userEmail: string },
+    });
+
     return NextResponse.json(posts);
   } catch (err) {
     return NextResponse.json(

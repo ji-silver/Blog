@@ -4,7 +4,6 @@ import Image from 'next/image'
 import NoticeList from '../noticeList/NoticeList'
 import { NoticeProps } from '@/types'
 import { useRouter } from 'next/navigation'
-import CustomButton from '../customButton/CustomButton'
 import styles from './notice.module.scss';
 
 const Notice = () => {
@@ -13,7 +12,6 @@ const Notice = () => {
     const [filterData, setFilterData] = useState<NoticeProps[]>([])
     const [search, setSearch] = useState('')
     const router = useRouter();
-    const apiUrl: string = process.env.NEXT_PUBLIC_API_URL || '';
 
     // 검색어 필터링
     const handleSearch = () => {
@@ -51,7 +49,7 @@ const Notice = () => {
         <div className='max-width'>
             <div className={styles.notice}>
                 <div className={styles.noticeLeft}>
-                    <h1>모든 글</h1>
+                    <h1>모든 글 ({data.length})</h1>
 
                 </div>
                 <div className={styles.noticeRight}>
