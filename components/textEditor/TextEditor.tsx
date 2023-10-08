@@ -5,6 +5,7 @@ import ReactQuill from 'react-quill';
 import { NoticeWriteProps } from '@/types';
 import 'react-quill/dist/quill.snow.css';
 import styles from './textEditor.module.scss'
+import { useImage } from '@/context/ImageContext';
 
 AWS.config.update({
     region: process.env.NEXT_PUBLIC_S3_REGION,
@@ -17,6 +18,7 @@ const cloudFront_url = process.env.NEXT_PUBLIC_CLOUD_FRONT_URL;
 const TextEditor = (({ onTextChange, value }: NoticeWriteProps) => {
     const quillRef = useRef<ReactQuill>(null);
     const [editorValue, setEditorValue] = useState(value);
+    const { setImageUrl, imageUrl } = useImage();
 
     // 이미지 S3 업로드 후 URL 가져오기
     const imageHandler = async () => {
@@ -27,7 +29,8 @@ const TextEditor = (({ onTextChange, value }: NoticeWriteProps) => {
 
         input.addEventListener("change", async () => {
             const file = input.files?.[0];
-            const fileName = file?.name;
+            const fileName = file?.name; // 파일 이름 사용
+            // AWS S3 업로드
             try {
                 if (quillRef.current) {
                     const upload = new AWS.S3.ManagedUpload({
@@ -38,8 +41,10 @@ const TextEditor = (({ onTextChange, value }: NoticeWriteProps) => {
                             Body: file,
                         },
                     })
+                    // 업로드 완료 시 업로드 된 이미지 S3 키 얻어오기
                     const url_key = await upload.promise().then((res) => res.Key);
 
+                    // Quill 에디터에서 현재 커서 위치 (range) 가져와서 커서 위치에 이미지 삽입
                     const range = quillRef.current?.getEditor().getSelection()?.index;
                     if (range !== null && range !== undefined) {
                         let quill = quillRef.current?.getEditor();
@@ -49,6 +54,8 @@ const TextEditor = (({ onTextChange, value }: NoticeWriteProps) => {
                             `<img src="${cloudFront_url}/${url_key}" alt="image" />`
 
                         );
+
+                        setImageUrl(`${cloudFront_url}/${url_key}`);
                     }
                 }
             } catch (err) {

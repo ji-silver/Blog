@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import FormPage from '@/components/formPage/FormPage';
 import { PostFormData } from '@/types';
+import { useImage } from '@/context/ImageContext';
 
 interface ParamsProps {
     params: {
@@ -13,9 +14,21 @@ interface ParamsProps {
 const EditPage = ({ params }: ParamsProps) => {
     const { postId } = params;
     const router = useRouter();
+    const { imageUrl } = useImage();
     const [date, setDate] = useState('');
     const [formData, setFormData] = useState<PostFormData | null>(null);
-    const apiUrl: string = process.env.NEXT_PUBLIC_API_URL || '';
+
+    const defaultImg = "https://jisilver-bucket.s3.ap-northeast-2.amazonaws.com/upload/noimage+(1).jpg";
+
+    // 이미지
+    useEffect(() => {
+        const imgURL = imageUrl || defaultImg;
+        setFormData((prevFormData: PostFormData | null) => ({
+            ...prevFormData!,
+            img: imgURL,
+        }));
+    }, [imageUrl]);
+
 
     useEffect(() => {
         const getPostId = async () => {
@@ -34,8 +47,14 @@ const EditPage = ({ params }: ParamsProps) => {
         getPostId();
     }, [postId]);
 
+
     const handleEditSubmit = async (formData: PostFormData) => {
         try {
+            // 이미지 URL을 formData에 추가
+            formData.img = imageUrl || defaultImg;
+
+            console.log(formData); // formData 내용 확인
+
             const res = await fetch(`/api/posts/${postId}`, {
                 method: 'PATCH',
                 body: JSON.stringify(formData),
@@ -52,6 +71,8 @@ const EditPage = ({ params }: ParamsProps) => {
             console.log(err);
         }
     };
+
+
 
     if (formData === null) {
         return null;

@@ -1,12 +1,13 @@
 'use client'
 import dynamic from 'next/dynamic';
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { formatTodayDate } from '@/utils';
 import NoticeWrite from '../noticeWrite/NoticeWrite';
 import CustomButton from '../customButton/CustomButton';
 import { PostFormData } from '@/types';
 import styles from './formPage.module.scss'
+import { useImage } from '@/context/ImageContext';
 
 // 에디터 SSR 지원 x, 비동기적으로 가져오기
 const Editor = dynamic(() => import('../textEditor/TextEditor'), { ssr: false });
@@ -23,7 +24,20 @@ const FormPage = ({
     titlePlaceholder,
 }: PostFormProps) => {
     const router = useRouter();
+    const { imageUrl } = useImage();
     const [formData, setFormData] = useState<PostFormData>(initialFormData);
+
+    const defaultImg = "https://jisilver-bucket.s3.ap-northeast-2.amazonaws.com/upload/noimage+(1).jpg"
+    // 이미지
+    useEffect(() => {
+        const imgURL = imageUrl || defaultImg;
+
+        setFormData(prevData => ({
+            ...prevData,
+            img: imgURL,
+        }));
+    }, [imageUrl]);
+
 
     const handleTitleChange = (text: string) => {
         setFormData((prevData) => ({

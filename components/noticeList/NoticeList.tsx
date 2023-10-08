@@ -34,6 +34,7 @@ const NoticeList = ({ data, loading }: NoticeListProps) => {
     // 현재 페이지에서 보여줄 데이터를 startIndex부터 endIndex까지 잘라내기
     const currentPageData = data.slice(startIndex, endIndex);
 
+
     return (
         <div>
             {loading ? (
@@ -46,16 +47,20 @@ const NoticeList = ({ data, loading }: NoticeListProps) => {
                     {currentPageData.length === 0 ? (
                         <div>
                             <p className={styles.empty}>작성된 글이 없습니다.</p>
-                            <hr />
                         </div>
                     ) : (
                         currentPageData.map((item) => (
                             <Link href={`/detail/${item.id}`} key={item.id}>
                                 <div className={styles.list}>
-                                    <p className={styles.title}>
-                                        {item.title}
-                                    </p>
-                                    <p className={styles.time}>{formatTime(item.createdAt)}</p>
+                                    <div className={styles.thumbnail}>
+                                        <img src={item.img} alt="" />
+                                    </div>
+                                    <div className={styles.contents}>
+                                        <p className={styles.title}>
+                                            {item.title}
+                                        </p>
+                                        <p className={styles.time}>{formatTime(item.createdAt)}</p>
+                                    </div>
                                 </div>
                             </Link>
                         ))

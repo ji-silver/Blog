@@ -6,7 +6,6 @@ import { PostFormData } from '@/types';
 
 const WritePage = () => {
     const router = useRouter();
-    const apiUrl: string = process.env.NEXT_PUBLIC_API_URL || '';
 
     const handleWriteSubmit = async (formData: PostFormData) => {
         try {
@@ -19,7 +18,11 @@ const WritePage = () => {
             });
             if (res.ok) {
                 const data = await res.json();
-                router.push(`/api/posts/detail/${data.id}`);
+                window.location.reload();
+
+                // 페이지 이동
+                const newUrl = `/detail/${data.id}`;
+                window.location.href = newUrl;
             } else {
                 alert('저장하지 못했습니다. 잠시후에 다시 이용해주세요.');
             }

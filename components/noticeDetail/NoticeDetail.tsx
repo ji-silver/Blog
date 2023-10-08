@@ -14,7 +14,6 @@ interface Props {
 const NoticeDetail = ({ postData }: Props) => {
     const router = useRouter();
     const id = postData?.id;
-    const apiUrl: string = process.env.NEXT_PUBLIC_API_URL || '';
     const formattedDate = postData ? formatDate(new Date(postData.createdAt)) : "";
 
 

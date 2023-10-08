@@ -16,7 +16,6 @@ export const authOptions = {
       clientSecret: process.env.KAKAO_CLIENT_SECRET || "",
     }),
   ],
-  debug: true,
 };
 
 export const getAuthSession = () => getServerSession(authOptions);

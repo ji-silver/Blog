@@ -3,6 +3,7 @@ import { MouseEventHandler, ReactNode } from "react";
 export interface PostFormData {
   title: string;
   desc: string;
+  img?: string;
 }
 
 // 공지사항 api 데이터
@@ -25,6 +26,7 @@ export interface NoticeTitleProps {
 export interface NoticeWriteProps {
   onTextChange: (text: string) => void;
   value: string;
+  img?: string;
 }
 
 // 커스텀 버튼 타입

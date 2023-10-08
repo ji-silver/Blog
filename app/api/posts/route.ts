@@ -16,6 +16,7 @@ export const POST = async (req: Request) => {
 
   try {
     const body = await req.json();
+
     const newPost = await prisma.post.create({
       data: { ...body, userEmail: session.user?.email },
     });
@@ -32,6 +33,13 @@ export const POST = async (req: Request) => {
 
 // GET
 export const GET = async () => {
+  const session = await getAuthSession();
+  if (!session) {
+    return NextResponse.json(
+      { message: "회원 정보가 없습니다." },
+      { status: 401 }
+    );
+  }
   try {
     const posts = await prisma.post.findMany();
     return NextResponse.json(posts);

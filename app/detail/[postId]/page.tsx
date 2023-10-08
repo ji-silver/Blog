@@ -11,7 +11,6 @@ interface paramsProps {
 const FetchPage = ({ params }: paramsProps) => {
     const { postId } = params;
     const [postData, setPostData] = useState(null);
-    const apiUrl: string = process.env.NEXT_PUBLIC_API_URL || '';
 
     useEffect(() => {
         const getPostId = async () => {
