@@ -10,6 +10,7 @@ const nextConfig = {
       "res.cloudinary.com",
       "lh3.googleusercontent.com",
       "k.kakaocdn.net",
+      "ssl.pstatic.net",
     ],
   },
   externals: {

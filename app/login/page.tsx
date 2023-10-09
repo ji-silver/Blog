@@ -16,6 +16,7 @@ const Login = () => {
                         <img src="/google.svg" alt="google" className={styles.googleImg} />구글 계정으로 로그인</button>
                     <button className={styles.kakao} onClick={() => signIn('kakao', { callbackUrl: "/" })} >
                         <img src="/kakao.svg" alt="kakao" className={styles.kakaoImg} />카카오 로그인</button>
+                    <button className={styles.google} onClick={() => signIn('naver', { callbackUrl: "/" })} >네이버 로그인</button>
                 </div>
             </div>
         </div>
