@@ -11,7 +11,6 @@ const Notice = () => {
     const [data, setData] = useState<NoticeProps[]>([])
     const [filterData, setFilterData] = useState<NoticeProps[]>([])
     const [search, setSearch] = useState('')
-    const router = useRouter();
 
     // 검색어 필터링
     const handleSearch = () => {

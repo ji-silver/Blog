@@ -3,7 +3,7 @@ import { MouseEventHandler, ReactNode } from "react";
 export interface PostFormData {
   title: string;
   desc: string;
-  img?: string;
+  img?: string | null;
 }
 
 // 공지사항 api 데이터

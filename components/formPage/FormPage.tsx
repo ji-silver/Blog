@@ -27,8 +27,13 @@ const FormPage = ({
     const { imageUrl } = useImage();
     const [formData, setFormData] = useState<PostFormData>(initialFormData);
 
+    useEffect(() => {
+        setFormData(initialFormData);
+    }, [initialFormData]);
+
     const defaultImg = "https://jisilver-bucket.s3.ap-northeast-2.amazonaws.com/upload/noimage+(1).jpg"
-    // 이미지
+
+    // 이미지 없을 때 기본 이미지 넣기
     useEffect(() => {
         const imgURL = imageUrl || defaultImg;
 
