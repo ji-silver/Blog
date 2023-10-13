@@ -1,17 +1,30 @@
-# BLOG
 
+
+<div align="center">
+
+# MY BLOG
+ 
+<img src="https://github.com/ji-silver/Blog/assets/59919953/2f894d8f-84d2-4803-916b-b6f1daf27dbd">
+ 
 ### <a href="https://myblogapp-dev.vercel.app/">🖥️ Website</a>
-
-<br />
+</div>
 
 ## 🗒️ 프로젝트 기획
-**Next.js와 prisma를 이용해서 CRUD 가능한 블로그 만들기**
-
+**Next.js와 Prisma를 이용해서 CRUD 가능한 블로그 만들기**
+- Next.js에서 Prisma를 이용해서 REST API 만들기
+- Next Auth 라이브러리로 소셜 로그인 구현
+- WYSIWYG 에디터 사용해서 글 작성하기
  <br />
 
 ## 📅 개발 기간
 2023년 9월 13일 ~ 9월 22일 <br />
-(2023. 10. 08 ~ : 소셜 로그인 구현 추가 작업)
+<ul>
+ <li>0.1.0</li>
+ <ul>
+      <li> 소셜 로그인 구현 추가 작업</li>
+    </ul>
+</ul>
+
 
 <br />
 
