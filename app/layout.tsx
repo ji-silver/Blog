@@ -1,13 +1,17 @@
 import Navbar from '@/components/navbar/Navbar'
-import './globals.css'
+import './globals.scss'
 import type { Metadata } from 'next'
 import Provider from './Provider'
 import { ImageProvider } from '@/context/ImageContext'
 
 
+
 export const metadata: Metadata = {
   title: 'MY BLOG',
   description: '블로그',
+  icons: {
+    icon: "/favicon.ico",
+  },
   viewport: {
     width: 'device-width',
     initialScale: 1,

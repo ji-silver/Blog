@@ -44,10 +44,10 @@ const NoticeDetail = ({ postData }: Props) => {
                 <hr />
                 <div className={styles.btnContainer}>
                     <Link href='/'>
-                        <CustomButton title="목록으로" containerStyles={styles.listBtn} />
+                        <CustomButton title="목록으로" containerStyles={styles.listBtn} aria-label="목록으로" />
                     </Link>
-                    <CustomButton title="수정" containerStyles={styles.editBtn} handleClick={() => router.push(`/edit/${id}`)} />
-                    <CustomButton title="삭제" containerStyles={styles.deleteBtn} handleClick={handleDelete} />
+                    <CustomButton title="수정" containerStyles={styles.editBtn} handleClick={() => router.push(`/edit/${id}`)} aria-label="수정" />
+                    <CustomButton title="삭제" containerStyles={styles.deleteBtn} handleClick={handleDelete} aria-label="삭제" />
                 </div>
             </div>
         </div>

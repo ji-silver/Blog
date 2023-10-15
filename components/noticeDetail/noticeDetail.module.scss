@@ -1,44 +1,54 @@
 .detail {
     padding-top: 80px;
-}
 
-.title {
-    font-size: 32px;
-    font-weight: 600;
-}
-
-.date {
-    color: #707070;
-    padding-top: 16px;
-    padding-bottom: 32px;
-}
-
-.content {
-    padding: 32px 0;
-    img {
-        width: 100%;
-        height: auto;
+    a {
+        text-decoration: underline;
+        color: #06c;
     }
-}
 
-.btnContainer {
-    padding-top: 16px;
-    margin-bottom: 50px;
-    display: flex;
-    gap: 1rem;
-}
+    .title {
+        font-size: 32px;
+        font-weight: 600;
+    }
 
-.listBtn {
-    background: white;
-    border: 1px solid #dedede;
-}
+    .date {
+        color: #707070;
+        padding-top: 16px;
+        padding-bottom: 32px;
+    }
 
-.editBtn {
-    background: #ff5c00;
-    color: white;
-}
+    .content {
+        padding: 32px 0;
+        img {
+            max-width: 768px;
+            height: auto;
 
-.deleteBtn {
-    background: #ff0000;
-    color: white;
+            @media (max-width: 768px) {
+                max-width: 320px;
+            }
+        }
+    }
+
+    .btnContainer {
+        width: 100%;
+        padding-top: 16px;
+        margin-bottom: 50px;
+        display: flex;
+        gap: 1rem;
+    }
+
+    .listBtn {
+        background: white;
+        border: 1px solid #dedede;
+    }
+
+    .editBtn {
+        background: #816797;
+        color: white;
+    }
+
+    .deleteBtn {
+        background: #51557e;
+        color: white;
+    }
 }

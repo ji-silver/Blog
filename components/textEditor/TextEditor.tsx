@@ -5,7 +5,9 @@ import ReactQuill from 'react-quill';
 import { NoticeWriteProps } from '@/types';
 import 'react-quill/dist/quill.snow.css';
 import styles from './textEditor.module.scss'
+import styled from 'styled-components';
 import { useImage } from '@/context/ImageContext';
+
 
 AWS.config.update({
     region: process.env.NEXT_PUBLIC_S3_REGION,
@@ -52,7 +54,6 @@ const TextEditor = (({ onTextChange, value }: NoticeWriteProps) => {
                         quill?.clipboard.dangerouslyPasteHTML(
                             range,
                             `<img src="${cloudFront_url}/${url_key}" alt="image" />`
-
                         );
 
                         setImageUrl(`${cloudFront_url}/${url_key}`);
@@ -70,11 +71,9 @@ const TextEditor = (({ onTextChange, value }: NoticeWriteProps) => {
             toolbar: {
                 container: [
                     [{ header: [1, 2, false] }],
-                    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-                    [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
+                    ['bold', 'italic', 'underline', 'strike'],
+                    [{ list: 'ordered' }, { list: 'bullet' },],
                     ['link', 'image'],
-                    [{ align: [] }],
-                    ['clean'],
                 ],
                 handlers: {
                     image: imageHandler,

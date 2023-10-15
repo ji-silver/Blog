@@ -12,48 +12,60 @@
         align-items: center;
         justify-content: space-between;
         z-index: 9999;
-    }
 
-    .navbarRight {
-        display: flex;
-        gap: 1rem;
-        .writeBtn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            background: #000;
-            color: white;
-        }
-
-        .loginBtn {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            border: 1px solid #dedede;
-        }
-        .loginBtn,
-        .writeBtn {
-            div {
-                width: 15px;
-                height: 15px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                svg {
-                    width: 100%;
-                    height: 100%;
-                }
+        .navbarLeft {
+            flex: 1;
+            h1 {
+                font-size: 30px;
             }
         }
 
-        .user {
-            position: relative;
-            width: 40px;
-            height: 40px;
+        .navbarRight {
+            display: flex;
 
-            img {
-                border-radius: 50%;
+            justify-content: flex-end;
+            flex: 1;
+            gap: 1rem;
+            .writeBtn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+                background: #000;
+                color: white;
+            }
+
+            .loginBtn {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                border: 1px solid #dedede;
+            }
+            .loginBtn,
+            .writeBtn {
+                div {
+                    width: 15px;
+                    height: 15px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    svg {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+
+            .user {
+                position: relative;
+                width: 40px;
+                height: 40px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                }
             }
         }
     }

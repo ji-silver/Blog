@@ -43,35 +43,41 @@ const NoticeList = ({ data, loading }: NoticeListProps) => {
                     <hr />
                 </div>
             ) : (
-                <ul>
+                <div>
                     {currentPageData.length === 0 ? (
                         <div>
                             <p className={styles.empty}>작성된 글이 없습니다.</p>
                         </div>
                     ) : (
-                        currentPageData.map((item) => (
-                            <Link href={`/detail/${item.id}`} key={item.id}>
-                                <div className={styles.list}>
-                                    <div className={styles.thumbnail}>
-                                        <img src={item.img} alt="" />
-                                    </div>
-                                    <div className={styles.contents}>
-                                        <p className={styles.title}>
-                                            {item.title}
-                                        </p>
-                                        <p className={styles.time}>{formatTime(item.createdAt)}</p>
-                                    </div>
-                                </div>
-                            </Link>
-                        ))
+                        <ul className={styles.noticeList}>
+                            {currentPageData.map((item) => (
+                                <li key={item.id} className={styles.listItem}>
+                                    <Link href={`/detail/${item.id}`} className={styles.link}>
+                                        <div className={styles.list}>
+                                            <div className={styles.thumbnail}>
+                                                <img src={item.img} alt="" />
+                                            </div>
+                                            <div className={styles.contents}>
+                                                <p className={styles.title}>
+                                                    {item.title}
+                                                </p>
+                                                <p className={styles.time}>{formatTime(item.createdAt)}</p>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
                     )}
                     <hr />
-                </ul>
+                </div>
             )}
-            {loading ? null : (
-                <PageNation currentPage={currentPage} onPageChange={handlePage} totalPages={totalPages} />
-            )}
-        </div>
+            {
+                loading ? null : (
+                    <PageNation currentPage={currentPage} onPageChange={handlePage} totalPages={totalPages} />
+                )
+            }
+        </div >
     )
 
 }

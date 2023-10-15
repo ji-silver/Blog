@@ -95,11 +95,13 @@ const FormPage = ({
                         title="취소"
                         containerStyles={styles.cancelBtn}
                         handleClick={() => router.back()}
+                        aria-label="취소"
                     />
                     <CustomButton
                         title="저장"
                         containerStyles={styles.saveBtn}
                         handleClick={handleSubmit}
+                        aria-label="저장"
                     />
                 </div>
             </div>
