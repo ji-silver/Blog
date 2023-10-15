@@ -5,7 +5,6 @@ import ReactQuill from 'react-quill';
 import { NoticeWriteProps } from '@/types';
 import 'react-quill/dist/quill.snow.css';
 import styles from './textEditor.module.scss'
-import styled from 'styled-components';
 import { useImage } from '@/context/ImageContext';
 
 
